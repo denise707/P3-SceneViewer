@@ -70,9 +70,9 @@ UIManager::UIManager(HWND hwnd)
 	this->uiTable[uiNames.OBJECT_PARENTING] = objParenting;
 	this->uiList.push_back(objParenting);*/
 
-	/*Hierarchy* hierarchy = new Hierarchy();
+	Hierarchy* hierarchy = new Hierarchy();
 	this->uiTable[uiNames.HIERARCHY] = hierarchy;
-	this->uiList.push_back(hierarchy);*/
+	this->uiList.push_back(hierarchy);
 
 	LoadingScreen* loading = new LoadingScreen();
 	this->uiTable[uiNames.LOADING_SCREEN] = loading;

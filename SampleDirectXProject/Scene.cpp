@@ -20,6 +20,8 @@ Scene::Scene(int ID, IETSemaphore* mutex, std::vector <ModelInfo> models)
 		SimpleMath::Vector3 position = { (float)distr(gen), 0, (float)distr(gen) };
 		modelList[i].position = position;
 	}
+
+	totalModelCount = modelList.size();
 }
 
 Scene::~Scene()
@@ -30,7 +32,7 @@ void Scene::OnStart()
 {
 	isLoaded = true;
 
-	for (int i = 0; i < totalModelCount; i++) {
+	for (int i = 0; i < modelList.size(); i++) {
 		ModelLoaderThread* modelLoaderThread = new ModelLoaderThread(modelList[i].fileDir, modelList[i].name, mutex, &sceneObjectList, this, modelList[i].position);
 		threadList.push_back(modelLoaderThread);
 		modelLoaderThread->start();	
@@ -40,11 +42,15 @@ void Scene::OnStart()
 void Scene::OnFinishedExecution()
 {
 	this->loadingPercentage++;
+
+	if (this->loadingPercentage == totalModelCount) {
+		isFinished = true;
+	}
 }
 
 float Scene::GetLoadingPercentage()
 {
-	return (float)this->loadingPercentage / this->totalModelCount * 100;
+	return (float)this->loadingPercentage / this->modelList.size() * 100;
 }
 
 std::vector<GameObject*>* Scene::GetObjectList()
@@ -66,5 +72,15 @@ void Scene::Unload()
 bool Scene::IsLoaded()
 {
 	return this->isLoaded;
+}
+
+float Scene::GetLoadedCount()
+{
+	return this->loadingPercentage;
+}
+
+int Scene::GetTotalCount()
+{
+	return totalModelCount;
 }
 

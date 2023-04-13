@@ -23,10 +23,15 @@ public:
 	static void Initialize(std::vector<IETSemaphore*> mutexList);
 	static SceneManager* Get();
 	void AddScene(Scene* scene);
+	int GetSceneCount();
 	Scene* GetScene(int index);
 	void UnloadScene(int ID);
 	static std::vector<GameObject*>* emptyObjectList;
+	static std::vector<GameObject*>* combinedObjectList;
 	int currentSceneNum = -1;
+	void Update();
+	int allLoadedCount = 0;
+	int allTotalCount = 0;
 
 private:
 	void InitializeUsableModels();

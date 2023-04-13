@@ -3,6 +3,7 @@
 
 SceneManager* SceneManager::instance = nullptr;
 std::vector<GameObject*>* SceneManager::emptyObjectList = new std::vector<GameObject*>();
+std::vector<GameObject*>* SceneManager::combinedObjectList = new std::vector<GameObject*>();
 
 SceneManager::SceneManager()
 {
@@ -51,6 +52,11 @@ void SceneManager::AddScene(Scene* scene)
 	this->instance->sceneList.push_back(scene);
 }
 
+int SceneManager::GetSceneCount()
+{
+	return sceneList.size();
+}
+
 Scene* SceneManager::GetScene(int index)
 {
 	return this->sceneList[index];
@@ -59,6 +65,24 @@ Scene* SceneManager::GetScene(int index)
 void SceneManager::UnloadScene(int ID)
 {
 	instance->sceneList[ID]->Unload();
+}
+
+void SceneManager::Update()
+{
+	bool isDone = true;
+	for (int i = 0; i < sceneList.size(); i++) {
+		if (!instance->sceneList[i]->isFinished)
+			isDone = false;
+	}
+
+	if (isDone) {
+		for (int i = 0; i < instance->sceneList.size(); i++) {
+			for (int j = 0; j < instance->sceneList[i]->GetObjectList()->size(); j++) {
+				GameObject* obj = instance->sceneList[i]->GetObjectList()->at(j);
+				combinedObjectList->push_back(obj);
+			}
+		}
+	}
 }
 
 void SceneManager::InitializeUsableModels()

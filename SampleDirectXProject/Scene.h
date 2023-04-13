@@ -19,6 +19,9 @@ public:
 	std::vector<GameObject*>* GetObjectList();
 	void Unload();
 	bool IsLoaded();
+	float GetLoadedCount();
+	int GetTotalCount();
+	bool isFinished = false;
 
 private:
 	int ID;
@@ -26,8 +29,8 @@ private:
 	std::vector<const wchar_t*> modelFileNames;
 	IETSemaphore* mutex;
 	bool isLoaded = true;
+	int totalModelCount = 0;
 	int loadingPercentage = 0;
-	int totalModelCount = 4;
 	std::vector <ModelInfo> modelList;
 	std::vector <ModelLoaderThread*> threadList;
 };
