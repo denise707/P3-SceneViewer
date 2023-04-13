@@ -82,18 +82,12 @@ void AppWindow::onCreate()
 	GameObjectManager::Initialize();
 	UIManager::Initialize(this->m_hwnd);
 
-	SceneManager::Initialize();
+	SceneManager::Initialize(mutex);
 	
-	//Initialize scenes
+	//Start scenes
 	for (int i = 0; i < 2; i++) {
-		Scene* scene = new Scene(mutex);
-		
-		SceneManager::Get()->AddScene(scene);
-		SceneManager::Get()->GetScene(i)->id = i;
 		SceneManager::Get()->GetScene(i)->OnStart();
 	}
-
-	
 }
 
 void AppWindow::onUpdate()

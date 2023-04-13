@@ -81,8 +81,6 @@ Mesh::Mesh(const wchar_t* full_path) : Resource(full_path)
 	vertexBuffer = GraphicsEngine::get()->getRenderSystem()->createVertexBuffer(&list_vertices[0], sizeof(VertexMesh),
 		(UINT)list_vertices.size(), shader_byte_code, (UINT)size_shader);
 	indexBuffer = GraphicsEngine::get()->getRenderSystem()->createIndexBuffer(&list_indices[0], (UINT)list_indices.size());
-
-	std::cout << "mesh" << std::endl;
 }
 
 Mesh::~Mesh()

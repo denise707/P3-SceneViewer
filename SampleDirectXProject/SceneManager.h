@@ -1,6 +1,12 @@
 #pragma once
 #include <vector>
 #include "Scene.h"
+#include "IETSemaphore.h"
+
+struct ModelInfo {
+	std::string name;
+	const wchar_t* fileDir;
+};
 
 class SceneManager
 {
@@ -10,14 +16,17 @@ private:
 public:
 	SceneManager();
 	~SceneManager();
-	static void Initialize();
+	static void Initialize(IETSemaphore* mutex);
 	static SceneManager* Get();
-	void Update();
 	void AddScene(Scene* scene);
 	Scene* GetScene(int index);
+	void UnloadScene(int ID);
 
 private:
+	void InitializeUsableModels();
 	std::vector<Scene*> sceneList;
 	Scene* currentScene;
+	IETSemaphore* mutex;
+	std::vector <ModelInfo> usableModels;
 };
 

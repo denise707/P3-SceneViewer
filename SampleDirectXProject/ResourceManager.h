@@ -14,7 +14,7 @@ public:
 
 protected:
 	virtual Resource* CreateResourceFromFileConcerete(const wchar_t* file_path) = 0;
-private:
+public:
 	std::unordered_map<std::wstring, Resource*> m_map_resources;
 };
 

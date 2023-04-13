@@ -10,6 +10,8 @@ class ModelLoaderThread : public IETThread
 public:
 	ModelLoaderThread(const wchar_t* fileDir, std::string name, IETSemaphore* mutex, std::vector<GameObject*>* gameObjectList, IExecutionEvent* execEvent);
 	~ModelLoaderThread();
+	bool isRunning;
+	void destroy();
 
 private:
 	void run() override;
