@@ -34,7 +34,7 @@ public:
 
 	static AppWindow* Get();
 
-	static void Initialize(IETSemaphore* mutex);
+	static void Initialize(std::vector<IETSemaphore*> mutexList);
 
 	void update();
 
@@ -45,7 +45,6 @@ private:
 
 private:
 	class SceneCamera* sceneCamera = nullptr;
-	IETSemaphore* mutex;
-	//IMObjectProperty* imObjProp;
+	std::vector<IETSemaphore*> mutexList;
 };
 

@@ -2,6 +2,7 @@
 #include "GameObjectManager.h"
 
 SceneManager* SceneManager::instance = nullptr;
+std::vector<GameObject*>* SceneManager::emptyObjectList = new std::vector<GameObject*>();
 
 SceneManager::SceneManager()
 {
@@ -11,10 +12,10 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::Initialize(IETSemaphore* mutex)
+void SceneManager::Initialize(std::vector<IETSemaphore*> mutexList)
 {
 	instance = new SceneManager();
-	instance->mutex = mutex;
+	instance->mutexList = mutexList;
 
 	std::vector <ModelInfo> tempList;
 
@@ -25,7 +26,7 @@ void SceneManager::Initialize(IETSemaphore* mutex)
 	for (int i = 0; i < 4; i++) {
 		tempList.push_back(instance->usableModels[i]);
 	}
-	Scene* scene1 = new Scene(0, mutex, tempList);
+	Scene* scene1 = new Scene(0, mutexList[0], tempList);
 	SceneManager::Get()->AddScene(scene1);
 
 	tempList.clear();
@@ -34,7 +35,7 @@ void SceneManager::Initialize(IETSemaphore* mutex)
 	for (int i = 4; i < 8; i++) {
 		tempList.push_back(instance->usableModels[i]);
 	}
-	Scene* scene2 = new Scene(1, mutex, tempList);
+	Scene* scene2 = new Scene(1, mutexList[1], tempList);
 	SceneManager::Get()->AddScene(scene2);
 
 	tempList.clear();
@@ -57,7 +58,7 @@ Scene* SceneManager::GetScene(int index)
 
 void SceneManager::UnloadScene(int ID)
 {
-	instance->sceneList[ID]->GetObjectList()->clear();
+	instance->sceneList[ID]->Unload();
 }
 
 void SceneManager::InitializeUsableModels()

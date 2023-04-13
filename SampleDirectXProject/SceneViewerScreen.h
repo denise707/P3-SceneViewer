@@ -10,7 +10,7 @@ public:
 
 private:
 	float* percentage;
-	int currentScene = 0;
+	const char* currSceneTitle;
 	void UpdateScreen();
 };
 

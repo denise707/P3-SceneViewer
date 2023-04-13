@@ -2,12 +2,24 @@
 #include "GameObjectManager.h"
 #include "SceneManager.h"
 #include "GraphicsEngine.h"
+#include <random>
 
 Scene::Scene(int ID, IETSemaphore* mutex, std::vector <ModelInfo> models)
 {
 	this->ID = ID;
 	this->mutex = mutex;
 	this->modelList = models;
+
+	for (int i = 0; i < models.size(); i++) {
+
+		//Randomize Position
+		std::random_device rd; // obtain a random number from hardware
+		std::mt19937 gen(rd()); // seed the generator
+		std::uniform_int_distribution<> distr(0, 2.5f); // define the range
+
+		SimpleMath::Vector3 position = { (float)distr(gen), 0, (float)distr(gen) };
+		modelList[i].position = position;
+	}
 }
 
 Scene::~Scene()
@@ -16,8 +28,10 @@ Scene::~Scene()
 
 void Scene::OnStart()
 {
+	isLoaded = true;
+
 	for (int i = 0; i < totalModelCount; i++) {
-		ModelLoaderThread* modelLoaderThread = new ModelLoaderThread(modelList[i].fileDir, modelList[i].name, mutex, &sceneObjectList, this);
+		ModelLoaderThread* modelLoaderThread = new ModelLoaderThread(modelList[i].fileDir, modelList[i].name, mutex, &sceneObjectList, this, modelList[i].position);
 		threadList.push_back(modelLoaderThread);
 		modelLoaderThread->start();	
 	}
@@ -30,7 +44,7 @@ void Scene::OnFinishedExecution()
 
 float Scene::GetLoadingPercentage()
 {
-	return (float)this->loadingPercentage / this->totalModelCount;
+	return (float)this->loadingPercentage / this->totalModelCount * 100;
 }
 
 std::vector<GameObject*>* Scene::GetObjectList()
@@ -38,20 +52,19 @@ std::vector<GameObject*>* Scene::GetObjectList()
 	return &this->sceneObjectList;
 }
 
-void Scene::Update()
+void Scene::Unload()
 {
-	if (!isLoaded) {
-		for (int i = 0; i < threadList.size(); i++) {
-			std::cout << i << std::endl;
-			if (threadList[i] != NULL) {
-				threadList[i]->isRunning = false;
-				//threadList[i]->destroy();
-			}
-				
-		}
-		this->loadingPercentage = 0;
-		//GraphicsEngine::get()->getMeshManager()->deleteMesh();
-		isLoaded = true;
+	for (int i = 0; i < threadList.size(); i++) {
+		threadList[i]->isRunning = false;
 	}
+	this->loadingPercentage = 0;
+
+	this->sceneObjectList.clear();
+	this->isLoaded = false;
+}
+
+bool Scene::IsLoaded()
+{
+	return this->isLoaded;
 }
 

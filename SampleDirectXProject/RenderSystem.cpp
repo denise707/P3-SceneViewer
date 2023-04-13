@@ -127,7 +127,7 @@ bool RenderSystem::compilePixelShader(const wchar_t* file_name, const char* entr
 
 void RenderSystem::releaseCompiledShader()
 {
-	if (m_blob)m_blob->Release();
+	//if (m_blob)m_blob->Release();
 }
 
 DeviceContext* RenderSystem::getImmediateDeviceContext()

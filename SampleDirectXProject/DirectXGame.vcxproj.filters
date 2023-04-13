@@ -209,7 +209,7 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>GameEngine\GraphicsEngine\TextureManager</Filter>
     </ClCompile>
-    <ClCompile Include="CreditsScreen.cpp">
+    <ClCompile Include="LoadingScreen.cpp">
       <Filter>GameEngine\UIScreen</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
@@ -429,7 +429,7 @@
     <ClInclude Include="TextureManager.h">
       <Filter>GameEngine\GraphicsEngine\TextureManager</Filter>
     </ClInclude>
-    <ClInclude Include="CreditsScreen.h">
+    <ClInclude Include="LoadingScreen.h">
       <Filter>GameEngine\UIScreen</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">

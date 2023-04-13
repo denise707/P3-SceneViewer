@@ -57,9 +57,10 @@ UIManager::UIManager(HWND hwnd)
 
 	// Populate UI Table
 	UINames uiNames;
-	MenuBar* menuBar = new MenuBar();
+
+	/*MenuBar* menuBar = new MenuBar();
 	this->uiTable[uiNames.MENU_BAR] = menuBar;
-	this->uiList.push_back(menuBar);
+	this->uiList.push_back(menuBar);*/
 
 	//ObjectProperty* objProp = new ObjectProperty();
 	//this->uiTable[uiNames.OBJECT_PROPERTY] = objProp;
@@ -69,13 +70,13 @@ UIManager::UIManager(HWND hwnd)
 	this->uiTable[uiNames.OBJECT_PARENTING] = objParenting;
 	this->uiList.push_back(objParenting);*/
 
-	Hierarchy* hierarchy = new Hierarchy();
+	/*Hierarchy* hierarchy = new Hierarchy();
 	this->uiTable[uiNames.HIERARCHY] = hierarchy;
-	this->uiList.push_back(hierarchy);
+	this->uiList.push_back(hierarchy);*/
 
-	/*CreditsScreen* credits = new CreditsScreen();
-	this->uiTable[uiNames.CREDITS_SCREEN] = credits;
-	this->uiList.push_back(credits);*/
+	LoadingScreen* loading = new LoadingScreen();
+	this->uiTable[uiNames.LOADING_SCREEN] = loading;
+	this->uiList.push_back(loading);
 
 	/*PlaybackScreen* playback = new PlaybackScreen();
 	this->uiTable[uiNames.PLAYBACK] = playback;

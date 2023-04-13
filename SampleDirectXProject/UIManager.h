@@ -15,7 +15,7 @@
 #include "ObjectProperty.h"
 #include "ObjectParentingScreen.h";
 #include "Hierarchy.h"
-#include "CreditsScreen.h"
+#include "LoadingScreen.h";
 #include "PlaybackScreen.h"
 #include "ActionScreen.h"
 #include "DebugScreen.h"
@@ -24,7 +24,7 @@
 typedef std::string String;
 class UINames {
 public:
-	const String CREDITS_SCREEN = "CREDITS_SCREEN";
+	const String LOADING_SCREEN = "LOADING_SCREEN";
 	const String MENU_BAR = "MENU_BAR";
 	const String OBJECT_PROPERTY = "OBJECT_PROPERTY";
 	const String OBJECT_PARENTING = "OBJECT_PARENTING";

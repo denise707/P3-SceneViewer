@@ -141,7 +141,7 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
-    <ClCompile Include="CreditsScreen.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="DebugManager.cpp" />
     <ClCompile Include="DebugScreen.cpp" />
     <ClCompile Include="DeviceContext.cpp" />
@@ -212,7 +212,7 @@
     <ClInclude Include="CameraProjection.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConstantBuffer.h" />
-    <ClInclude Include="CreditsScreen.h" />
+    <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="DebugScreen.h" />
     <ClInclude Include="DeviceContext.h" />

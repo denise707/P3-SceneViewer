@@ -46,10 +46,10 @@ AppWindow* AppWindow::Get()
 	return sharedInstance;
 }
 
-void AppWindow::Initialize(IETSemaphore* mutex)
+void AppWindow::Initialize(std::vector<IETSemaphore*> mutexList)
 {
 	sharedInstance = new AppWindow();
-	sharedInstance->mutex = mutex;
+	sharedInstance->mutexList = mutexList;
 }
 
 void AppWindow::update()
@@ -82,7 +82,7 @@ void AppWindow::onCreate()
 	GameObjectManager::Initialize();
 	UIManager::Initialize(this->m_hwnd);
 
-	SceneManager::Initialize(mutex);
+	SceneManager::Initialize(mutexList);
 	
 	//Start scenes
 	for (int i = 0; i < 2; i++) {

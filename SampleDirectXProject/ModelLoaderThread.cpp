@@ -8,7 +8,7 @@
 #include <random>
 #include "TransformComponent.h"
 
-ModelLoaderThread::ModelLoaderThread(const wchar_t* fileDir, std::string name, IETSemaphore* mutex, std::vector<GameObject*>* gameObjectList, IExecutionEvent* execEvent)
+ModelLoaderThread::ModelLoaderThread(const wchar_t* fileDir, std::string name, IETSemaphore* mutex, std::vector<GameObject*>* gameObjectList, IExecutionEvent* execEvent, SimpleMath::Vector3 position)
 {
     this->fileDir = fileDir;
     this->name = name;
@@ -16,6 +16,7 @@ ModelLoaderThread::ModelLoaderThread(const wchar_t* fileDir, std::string name, I
     this->gameObjectList = gameObjectList;
     this->execEvent = execEvent;
     this->isRunning = true;
+    this->position = position;
 }
 
 ModelLoaderThread::~ModelLoaderThread()
@@ -44,10 +45,10 @@ void ModelLoaderThread::run()
         std::mt19937 gen(rd()); // seed the generator
         std::uniform_int_distribution<> distr(0, 2.5f); // define the range
 
-        obj->GetTransform()->SetPosition({ (float)distr(gen), 0, (float)distr(gen) });
+        obj->GetTransform()->SetPosition(position);
 
         mutex->acquire();
-        IETThread::sleep(50);
+        IETThread::sleep(1000);
         if (this->isRunning) {
             this->execEvent->OnFinishedExecution();
             this->gameObjectList->push_back(obj);
@@ -55,10 +56,7 @@ void ModelLoaderThread::run()
             
         mutex->release();
 
-        
         isRunning = false;
-
-        std::cout << name << "leave" << std::endl;
     }
 
     delete this;
