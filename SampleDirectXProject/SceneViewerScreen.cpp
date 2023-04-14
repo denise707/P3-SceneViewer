@@ -12,6 +12,31 @@ SceneViewerScreen::SceneViewerScreen(): UIScreen("SceneViewerScreen", true)
 	percentage4 = new float();
 
 	currSceneTitle = "Viewing: None";
+
+	Image image1 = {0, 0, NULL};
+	bool ret = LoadTextureFromFile("Scene 1.png", &image1.my_texture, &image1.my_image_width, &image1.my_image_height);
+	IM_ASSERT(ret);
+	imageList.push_back(image1);
+
+	Image image2 = { 0, 0, NULL };
+	ret = LoadTextureFromFile("Scene 2.png", &image2.my_texture, &image2.my_image_width, &image2.my_image_height);
+	IM_ASSERT(ret);
+	imageList.push_back(image2);
+
+	Image image3 = { 0, 0, NULL };
+	ret = LoadTextureFromFile("Scene 3.png", &image3.my_texture, &image3.my_image_width, &image3.my_image_height);
+	IM_ASSERT(ret);
+	imageList.push_back(image3);
+
+	Image image4 = { 0, 0, NULL };
+	ret = LoadTextureFromFile("Scene 4.png", &image4.my_texture, &image4.my_image_width, &image4.my_image_height);
+	IM_ASSERT(ret);
+	imageList.push_back(image4);
+
+	Image image5 = { 0, 0, NULL };
+	ret = LoadTextureFromFile("Scene 5.png", &image5.my_texture, &image5.my_image_width, &image5.my_image_height);
+	IM_ASSERT(ret);
+	imageList.push_back(image5);
 }
 
 SceneViewerScreen::~SceneViewerScreen()
@@ -41,6 +66,10 @@ void SceneViewerScreen::DrawUI()
 	//Scene 1
 	*percentage0 = SceneManager::Get()->GetScene(0)->GetLoadingPercentage();
 	ImGui::Text("Scene 1\n");
+
+	const ImVec2 image_size = ImVec2(imageList[0].my_image_width / 3.3, imageList[0].my_image_height / 3.3);
+	ImGui::Image((void*)imageList[0].my_texture, image_size);
+
 	ImGui::SliderFloat("##Percentage1", percentage0, 0, 100);
 	if (ImGui::Button("View Scene 1", ImVec2(150, 20))) { 
 		SceneManager::Get()->currentSceneNum = 0;
@@ -62,6 +91,10 @@ void SceneViewerScreen::DrawUI()
 	//Scene 2
 	*percentage1 = SceneManager::Get()->GetScene(1)->GetLoadingPercentage();
 	ImGui::Text("Scene 2\n");
+
+	const ImVec2 image_size1 = ImVec2(imageList[1].my_image_width / 3.3, imageList[1].my_image_height / 3.3);
+	ImGui::Image((void*)imageList[1].my_texture, image_size1);
+
 	ImGui::SliderFloat("##Percentage2", percentage1, 0, 100);
 	if (ImGui::Button("View Scene 2", ImVec2(150, 20))) { 
 		SceneManager::Get()->currentSceneNum = 1;
@@ -85,6 +118,10 @@ void SceneViewerScreen::DrawUI()
 	//Scene 3
 	*percentage2 = SceneManager::Get()->GetScene(2)->GetLoadingPercentage();
 	ImGui::Text("Scene 3\n");
+
+	const ImVec2 image_size2 = ImVec2(imageList[2].my_image_width / 3.3, imageList[2].my_image_height / 3.3);
+	ImGui::Image((void*)imageList[2].my_texture, image_size2);
+
 	ImGui::SliderFloat("##Percentage3", percentage2, 0, 100);
 	if (ImGui::Button("View Scene 3", ImVec2(150, 20))) {
 		SceneManager::Get()->currentSceneNum = 2;
@@ -106,6 +143,10 @@ void SceneViewerScreen::DrawUI()
 	//Scene 4
 	*percentage3 = SceneManager::Get()->GetScene(3)->GetLoadingPercentage();
 	ImGui::Text("Scene 4\n");
+
+	const ImVec2 image_size3 = ImVec2(imageList[3].my_image_width / 3.3, imageList[3].my_image_height / 3.3);
+	ImGui::Image((void*)imageList[3].my_texture, image_size3);
+
 	ImGui::SliderFloat("##Percentage4", percentage3, 0, 100);
 	if (ImGui::Button("View Scene 4", ImVec2(150, 20))) {
 		SceneManager::Get()->currentSceneNum = 3;
@@ -127,6 +168,10 @@ void SceneViewerScreen::DrawUI()
 	//Scene 4
 	*percentage4 = SceneManager::Get()->GetScene(4)->GetLoadingPercentage();
 	ImGui::Text("Scene 5\n");
+
+	const ImVec2 image_size4 = ImVec2(imageList[4].my_image_width / 3.3, imageList[4].my_image_height / 3.3);
+	ImGui::Image((void*)imageList[4].my_texture, image_size4);
+
 	ImGui::SliderFloat("##Percentage5", percentage4, 0, 100);
 	if (ImGui::Button("View Scene 5", ImVec2(150, 20))) {
 		SceneManager::Get()->currentSceneNum = 4;
@@ -147,6 +192,7 @@ void SceneViewerScreen::DrawUI()
 
 	ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 255, 0, 100));
 	if (ImGui::Button("View All", ImVec2(150, 20))) {
+		currSceneTitle = "Viewing: All";
 		SceneManager::Get()->currentSceneNum = 6;
 	}
 	ImGui::PopStyleColor();

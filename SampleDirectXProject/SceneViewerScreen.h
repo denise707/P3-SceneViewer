@@ -1,6 +1,12 @@
 #pragma once
 #include "UIScreen.h"
 
+struct Image {
+	int my_image_width = 0;
+	int my_image_height = 0;
+	ID3D11ShaderResourceView* my_texture = NULL;
+};
+
 class SceneViewerScreen : public UIScreen
 {
 public:
@@ -31,5 +37,7 @@ private:
 	bool isUpdated = false;
 	
 	float ticks = 0.0f;
+
+	std::vector <Image> imageList;
 };
 
