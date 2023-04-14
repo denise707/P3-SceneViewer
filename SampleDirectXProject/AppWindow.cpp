@@ -130,7 +130,7 @@ void AppWindow::onUpdate()
 	UIManager::Get()->DrawAllUI();
 	InputSystem::get()->update();
 
-	m_swap_chain->present(true);
+	m_swap_chain->present(false);
 }
 
 void AppWindow::onDestroy()
