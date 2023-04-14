@@ -23,6 +23,7 @@ private:
 	void UpdateTotalCount();
 	void ResetViewAll();
 	void CalculateFPS();
+	void Spacing();
 
 	int loadedCount = 0;
 	int totalCount = 0;

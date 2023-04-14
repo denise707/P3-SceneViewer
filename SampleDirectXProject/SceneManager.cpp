@@ -40,6 +40,33 @@ void SceneManager::Initialize(std::vector<IETSemaphore*> mutexList)
 	SceneManager::Get()->AddScene(scene2);
 
 	tempList.clear();
+
+	//Scene 3
+	for (int i = 1; i <= 8; i += 2) {
+		tempList.push_back(instance->usableModels[i]);
+	}
+	Scene* scene3 = new Scene(2, mutexList[2], tempList);
+	SceneManager::Get()->AddScene(scene3);
+
+	tempList.clear();
+
+	//Scene 4
+	for (int i = 0; i < 8; i += 2) {
+		tempList.push_back(instance->usableModels[i]);
+	}
+	Scene* scene4 = new Scene(3, mutexList[3], tempList);
+	SceneManager::Get()->AddScene(scene4);
+
+	tempList.clear();
+
+	//Scene 5
+	for (int i = 2; i < 5; i ++) {
+		tempList.push_back(instance->usableModels[i]);
+	}
+	Scene* scene5 = new Scene(4, mutexList[4], tempList);
+	SceneManager::Get()->AddScene(scene5);
+
+	tempList.clear();
 }
 
 SceneManager* SceneManager::Get()

@@ -47,8 +47,8 @@ void SceneViewerScreen::DrawUI()
 		currSceneTitle = "Viewing: Scene 1";
 		ResetViewAll();
 	}
-	if (ImGui::Button("Load Scene 1", ImVec2(150, 20))) {
-		if (!SceneManager::Get()->GetScene(0)->IsLoaded()) {
+	if (!SceneManager::Get()->GetScene(0)->IsLoaded()) {
+		if (ImGui::Button(("Load Scene 1"), ImVec2(150, 20))) {
 			SceneManager::Get()->GetScene(0)->OnStart();
 			ResetViewAll();
 		}
@@ -57,10 +57,7 @@ void SceneViewerScreen::DrawUI()
 		SceneManager::Get()->UnloadScene(0);
 	}
 
-	ImGui::Spacing();
-	ImGui::Spacing();
-	ImGui::Spacing();
-	ImGui::Spacing();
+	Spacing();
 
 	//Scene 2
 	*percentage1 = SceneManager::Get()->GetScene(1)->GetLoadingPercentage();
@@ -71,12 +68,82 @@ void SceneViewerScreen::DrawUI()
 		currSceneTitle = "Viewing: Scene 2";
 		ResetViewAll();
 	}
-	if (ImGui::Button("Unload Scene 2", ImVec2(150, 20))) { }
+
+	if (!SceneManager::Get()->GetScene(1)->IsLoaded()) {
+		if (ImGui::Button(("Load Scene 2"), ImVec2(150, 20))) {
+			SceneManager::Get()->GetScene(1)->OnStart();
+			ResetViewAll();
+		}
+	}
+
+	if (ImGui::Button("Unload Scene 2", ImVec2(150, 20))) {
+		SceneManager::Get()->UnloadScene(1);
+	}
 	
-	ImGui::Spacing();
-	ImGui::Spacing();
-	ImGui::Spacing();
-	ImGui::Spacing();
+	Spacing();
+
+	//Scene 3
+	*percentage2 = SceneManager::Get()->GetScene(2)->GetLoadingPercentage();
+	ImGui::Text("Scene 3\n");
+	ImGui::SliderFloat("##Percentage3", percentage2, 0, 100);
+	if (ImGui::Button("View Scene 3", ImVec2(150, 20))) {
+		SceneManager::Get()->currentSceneNum = 2;
+		currSceneTitle = "Viewing: Scene 3";
+		ResetViewAll();
+	}
+	if (!SceneManager::Get()->GetScene(2)->IsLoaded()) {
+		if (ImGui::Button(("Load Scene 3"), ImVec2(150, 20))) {
+			SceneManager::Get()->GetScene(2)->OnStart();
+			ResetViewAll();
+		}
+	}
+	if (ImGui::Button("Unload Scene 3", ImVec2(150, 20))) {
+		SceneManager::Get()->UnloadScene(2);
+	}
+
+	Spacing();
+
+	//Scene 4
+	*percentage3 = SceneManager::Get()->GetScene(3)->GetLoadingPercentage();
+	ImGui::Text("Scene 4\n");
+	ImGui::SliderFloat("##Percentage4", percentage3, 0, 100);
+	if (ImGui::Button("View Scene 4", ImVec2(150, 20))) {
+		SceneManager::Get()->currentSceneNum = 3;
+		currSceneTitle = "Viewing: Scene 4";
+		ResetViewAll();
+	}
+	if (!SceneManager::Get()->GetScene(3)->IsLoaded()) {
+		if (ImGui::Button(("Load Scene 4"), ImVec2(150, 20))) {
+			SceneManager::Get()->GetScene(3)->OnStart();
+			ResetViewAll();
+		}
+	}
+	if (ImGui::Button("Unload Scene 4", ImVec2(150, 20))) {
+		SceneManager::Get()->UnloadScene(3);
+	}
+
+	Spacing();
+
+	//Scene 4
+	*percentage4 = SceneManager::Get()->GetScene(4)->GetLoadingPercentage();
+	ImGui::Text("Scene 5\n");
+	ImGui::SliderFloat("##Percentage5", percentage4, 0, 100);
+	if (ImGui::Button("View Scene 5", ImVec2(150, 20))) {
+		SceneManager::Get()->currentSceneNum = 4;
+		currSceneTitle = "Viewing: Scene 5";
+		ResetViewAll();
+	}
+	if (!SceneManager::Get()->GetScene(4)->IsLoaded()) {
+		if (ImGui::Button(("Load Scene 5"), ImVec2(150, 20))) {
+			SceneManager::Get()->GetScene(4)->OnStart();
+			ResetViewAll();
+		}
+	}
+	if (ImGui::Button("Unload Scene 5", ImVec2(150, 20))) {
+		SceneManager::Get()->UnloadScene(4);
+	}
+
+	Spacing();
 
 	ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 255, 0, 100));
 	if (ImGui::Button("View All", ImVec2(150, 20))) {
@@ -142,4 +209,12 @@ void SceneViewerScreen::CalculateFPS()
 		fpsText = "FPS: " + std::to_string(1.0f / currentTime);
 		ticks = 0.0f;
 	}
+}
+
+void SceneViewerScreen::Spacing()
+{
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Spacing();
 }

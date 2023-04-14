@@ -85,7 +85,7 @@ void AppWindow::onCreate()
 	SceneManager::Initialize(mutexList);
 	
 	//Start scenes
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 5; i++) {
 		SceneManager::Get()->GetScene(i)->OnStart();
 	}
 }
