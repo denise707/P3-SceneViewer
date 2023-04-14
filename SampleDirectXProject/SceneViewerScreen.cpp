@@ -23,7 +23,7 @@ void SceneViewerScreen::DrawUI()
 	UpdateLoadedCount();
 	UpdateTotalCount();
 	UpdateScreen();
-
+	
 	ImGui::Begin("Scene Viewer", &isActive, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 	ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 255, 0, 255));

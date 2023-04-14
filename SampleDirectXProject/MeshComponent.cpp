@@ -51,7 +51,7 @@ void MeshComponent::Start()
 
 void MeshComponent::Update(float deltaTime)
 {
-	CalculateBounds();
+	//CalculateBounds();
 
 	constant cc;
 	cc.m_time = deltaTime;
@@ -84,7 +84,7 @@ void MeshComponent::Update(float deltaTime)
 		GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, nullptr);
 
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
-	
+
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 
@@ -94,15 +94,13 @@ void MeshComponent::Update(float deltaTime)
 		GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setPixelShader(m_ps_outline);
 		GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList_Line(m_ib->getSizeIndexList(), 0, 0);
 	}
-
-	//GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->clearTexture(m_ps);
 }
 
 void MeshComponent::SetMesh(Mesh* inMesh)
 {
 	mesh = inMesh;
 
-	CalculateBounds();
+	//CalculateBounds();
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
