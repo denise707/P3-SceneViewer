@@ -93,6 +93,10 @@ UIManager::UIManager(HWND hwnd)
 	SceneViewerScreen* sceneViewer = new SceneViewerScreen();
 	this->uiTable[uiNames.SCENE_VIEWER] = sceneViewer;
 	this->uiList.push_back(sceneViewer);
+
+	FPSCounter* fpsCounter = new FPSCounter();
+	this->uiTable[uiNames.FPS_COUNTER] = fpsCounter;
+	this->uiList.push_back(fpsCounter);
 }
 
 UIManager::~UIManager()

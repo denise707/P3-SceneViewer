@@ -141,6 +141,7 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
+    <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="DebugManager.cpp" />
     <ClCompile Include="DebugScreen.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="CameraProjection.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="FPSCounter.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="DebugScreen.h" />

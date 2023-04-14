@@ -20,6 +20,7 @@
 #include "ActionScreen.h"
 #include "DebugScreen.h"
 #include "SceneViewerScreen.h"
+#include "FPSCounter.h"
 
 typedef std::string String;
 class UINames {
@@ -33,6 +34,7 @@ public:
 	const String ACTION = "ACTION";
 	const String DEBUG = "DEBUG";
 	const String SCENE_VIEWER = "SCENE_VIEWER";
+	const String FPS_COUNTER = "FPS_COUNTER";
 };
 
 class UIManager

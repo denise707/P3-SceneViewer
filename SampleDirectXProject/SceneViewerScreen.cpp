@@ -55,10 +55,10 @@ void SceneViewerScreen::DrawUI()
 	ImGui::Text(currSceneTitle);
 	ImGui::PopStyleColor();
 
-	ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 255, 255, 255));
-	CalculateFPS();
-	ImGui::Text(fpsText.c_str());
-	ImGui::PopStyleColor();
+	//ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 255, 255, 255));
+	//CalculateFPS();
+	//ImGui::Text(fpsText.c_str());
+	//ImGui::PopStyleColor();
 	
 	ImGui::Spacing();
 	ImGui::Spacing();
@@ -165,7 +165,7 @@ void SceneViewerScreen::DrawUI()
 
 	Spacing();
 
-	//Scene 4
+	//Scene 5
 	*percentage4 = SceneManager::Get()->GetScene(4)->GetLoadingPercentage();
 	ImGui::Text("Scene 5\n");
 
