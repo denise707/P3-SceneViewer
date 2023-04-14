@@ -16,15 +16,19 @@ private:
 	float* percentage4;
 
 	const char* currSceneTitle;
+	std::string fpsText;
+
 	void UpdateScreen();
 	void UpdateLoadedCount();
 	void UpdateTotalCount();
 	void ResetViewAll();
+	void CalculateFPS();
 
 	int loadedCount = 0;
 	int totalCount = 0;
 
 	bool isUpdated = false;
-	bool modified = false;
+	
+	float ticks = 0.0f;
 };
 

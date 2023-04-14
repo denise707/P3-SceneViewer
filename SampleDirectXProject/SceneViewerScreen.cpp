@@ -1,6 +1,7 @@
 #include "SceneViewerScreen.h"
 #include "SceneManager.h"
 #include "GameObjectManager.h"
+#include "EngineTime.h"
 
 SceneViewerScreen::SceneViewerScreen(): UIScreen("SceneViewerScreen", true)
 {
@@ -27,6 +28,11 @@ void SceneViewerScreen::DrawUI()
 
 	ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 255, 0, 255));
 	ImGui::Text(currSceneTitle);
+	ImGui::PopStyleColor();
+
+	ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0, 255, 255, 255));
+	CalculateFPS();
+	ImGui::Text(fpsText.c_str());
 	ImGui::PopStyleColor();
 	
 	ImGui::Spacing();
@@ -126,4 +132,14 @@ void SceneViewerScreen::ResetViewAll()
 {
 	SceneManager::Get()->combinedObjectList->clear();
 	isUpdated = false;
+}
+
+void SceneViewerScreen::CalculateFPS()
+{
+	float currentTime = EngineTime::getDeltaTime();
+	this->ticks += EngineTime::getDeltaTime();
+	if (ticks >= 0.5f) {
+		fpsText = "FPS: " + std::to_string(1.0f / currentTime);
+		ticks = 0.0f;
+	}
 }
