@@ -125,9 +125,6 @@ void SceneManager::InitializeUsableModels()
 	ModelInfo model2= { "Sword", L"Assets\\Meshes\\Sword.obj" };
 	usableModels.push_back(model2);
 
-	//ModelInfo model2 = { "Dino", L"Assets\\Meshes\\dino.obj" };// large file
-	//usableModels.push_back(model2);
-
 	ModelInfo model3 = { "Statue", L"Assets\\Meshes\\statue.obj" };
 	usableModels.push_back(model3);
 #pragma endregion
@@ -146,9 +143,6 @@ void SceneManager::InitializeUsableModels()
 	ModelInfo model7 = { "Spaceship", L"Assets\\Meshes\\spaceship.obj" };
 	usableModels.push_back(model7);
 
-	//ModelInfo model7 = { "Sponza", L"Assets\\Meshes\\sponza_basic.obj" };//large file
-	//usableModels.push_back(model7);
-
 #pragma endregion
 
 #pragma region ThirdGroup
@@ -164,9 +158,6 @@ void SceneManager::InitializeUsableModels()
 
 	ModelInfo model11 = { "Dango", L"Assets\\Meshes\\dango.obj" };
 	usableModels.push_back(model11);
-
-	//ModelInfo model11 = { "Rose", L"Assets\\Meshes\\rose.obj" };// large file
-	//usableModels.push_back(model11);
 
 #pragma endregion
 
@@ -184,11 +175,5 @@ void SceneManager::InitializeUsableModels()
 	ModelInfo model15 = { "Hat", L"Assets\\Meshes\\hat.obj" };
 	usableModels.push_back(model15);
 
-	//ModelInfo model15 = { "Ribcage", L"Assets\\Meshes\\ribcage.obj" };// large file
-	//usableModels.push_back(model15);
-
 #pragma endregion
-
-	/*Large Files*/
-
 }
