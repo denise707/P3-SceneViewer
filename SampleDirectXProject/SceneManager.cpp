@@ -42,7 +42,7 @@ void SceneManager::Initialize(std::vector<IETSemaphore*> mutexList)
 	tempList.clear();
 
 	//Scene 3
-	for (int i = 1; i <= 8; i += 2) {
+	for (int i = 8; i < 12; i++) {
 		tempList.push_back(instance->usableModels[i]);
 	}
 	Scene* scene3 = new Scene(2, mutexList[2], tempList);
@@ -51,7 +51,7 @@ void SceneManager::Initialize(std::vector<IETSemaphore*> mutexList)
 	tempList.clear();
 
 	//Scene 4
-	for (int i = 0; i < 8; i += 2) {
+	for (int i = 12; i < 16; i++) {
 		tempList.push_back(instance->usableModels[i]);
 	}
 	Scene* scene4 = new Scene(3, mutexList[3], tempList);
@@ -59,8 +59,9 @@ void SceneManager::Initialize(std::vector<IETSemaphore*> mutexList)
 
 	tempList.clear();
 
-	//Scene 5
-	for (int i = 2; i < 5; i ++) {
+	//Scene 5 is a mix of objects from Scene 1 - 4
+	for (int i = 0; i < 16; i += 4 ) {
+		std::cout << "Model: " << i << std::endl;
 		tempList.push_back(instance->usableModels[i]);
 	}
 	Scene* scene5 = new Scene(4, mutexList[4], tempList);
@@ -114,27 +115,80 @@ void SceneManager::Update()
 
 void SceneManager::InitializeUsableModels()
 {
-	ModelInfo model0 = { "Armadillo", L"Assets\\Meshes\\armadillo.obj" };
+#pragma region FirstGroup
+	ModelInfo model0 = { "Armadillo", L"Assets\\Meshes\\armadillo.obj" };//large file
 	usableModels.push_back(model0);
 
 	ModelInfo model1 = { "Teapot", L"Assets\\Meshes\\teapot.obj" };
 	usableModels.push_back(model1);
 
-	ModelInfo model2 = { "Bunny", L"Assets\\Meshes\\bunny.obj" };
+	ModelInfo model2= { "Sword", L"Assets\\Meshes\\Sword.obj" };
 	usableModels.push_back(model2);
+
+	//ModelInfo model2 = { "Dino", L"Assets\\Meshes\\dino.obj" };// large file
+	//usableModels.push_back(model2);
 
 	ModelInfo model3 = { "Statue", L"Assets\\Meshes\\statue.obj" };
 	usableModels.push_back(model3);
+#pragma endregion
 
-	ModelInfo model4 = { "Asteroid", L"Assets\\Meshes\\asteroid.obj" };
+#pragma region SecondGroup
+
+	ModelInfo model4 = { "Monitor", L"Assets\\Meshes\\monitor.obj" };
 	usableModels.push_back(model4);
 
-	ModelInfo model5 = { "Monitor", L"Assets\\Meshes\\monitor.obj" };
+	ModelInfo model5 = { "Lion", L"Assets\\Meshes\\lion.obj" }; // large file
 	usableModels.push_back(model5);
 
-	ModelInfo model6 = { "Spaceship", L"Assets\\Meshes\\spaceship.obj" };
+	ModelInfo model6 = { "LV", L"Assets\\Meshes\\lv.obj" };
 	usableModels.push_back(model6);
 
-	ModelInfo model7 = { "Sponza", L"Assets\\Meshes\\sponza_basic.obj" };
+	ModelInfo model7 = { "Spaceship", L"Assets\\Meshes\\spaceship.obj" };
 	usableModels.push_back(model7);
+
+	//ModelInfo model7 = { "Sponza", L"Assets\\Meshes\\sponza_basic.obj" };//large file
+	//usableModels.push_back(model7);
+
+#pragma endregion
+
+#pragma region ThirdGroup
+
+	ModelInfo model8 = { "Asteroid", L"Assets\\Meshes\\asteroid.obj" };
+	usableModels.push_back(model8);
+
+	ModelInfo model9 = { "Chair", L"Assets\\Meshes\\chair.obj" };// large file
+	usableModels.push_back(model9);
+
+	ModelInfo model10 = { "Bunny", L"Assets\\Meshes\\bunny.obj" };
+	usableModels.push_back(model10);
+
+	ModelInfo model11 = { "Dango", L"Assets\\Meshes\\dango.obj" };
+	usableModels.push_back(model11);
+
+	//ModelInfo model11 = { "Rose", L"Assets\\Meshes\\rose.obj" };// large file
+	//usableModels.push_back(model11);
+
+#pragma endregion
+
+#pragma region FourthGroup
+
+	ModelInfo model12 = { "Flamingo", L"Assets\\Meshes\\flamingo.obj" };
+	usableModels.push_back(model12);
+
+	ModelInfo model13 = { "Ganesha", L"Assets\\Meshes\\ganesha.obj" };// large file
+	usableModels.push_back(model13);
+
+	ModelInfo model14 = { "Amongus", L"Assets\\Meshes\\amongus.obj" };
+	usableModels.push_back(model14);
+
+	ModelInfo model15 = { "Hat", L"Assets\\Meshes\\hat.obj" };
+	usableModels.push_back(model15);
+
+	//ModelInfo model15 = { "Ribcage", L"Assets\\Meshes\\ribcage.obj" };// large file
+	//usableModels.push_back(model15);
+
+#pragma endregion
+
+	/*Large Files*/
+
 }

@@ -15,7 +15,7 @@ Scene::Scene(int ID, IETSemaphore* mutex, std::vector <ModelInfo> models)
 		//Randomize Position
 		std::random_device rd; // obtain a random number from hardware
 		std::mt19937 gen(rd()); // seed the generator
-		std::uniform_int_distribution<> distr(0, 2.5f); // define the range
+		std::uniform_int_distribution<> distr(0, 10.0f); // define the range
 
 		SimpleMath::Vector3 position = { (float)distr(gen), 0, (float)distr(gen) };
 		modelList[i].position = position;
